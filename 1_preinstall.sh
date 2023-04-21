@@ -35,7 +35,8 @@ echo "set EFI drive to: "
 read efiDrive
 
 # mounte install Drive to /mnt
-mount -o noatime,compress=zstd /dev/$installDrive /mnt
+#mount -o noatime,compress=zstd /dev/$installDrive /mnt
+mount -o noatime /dev/$installDrive /mnt
 
 #create Subvolumes
 btrfs subvolume create /mnt/root
