@@ -44,31 +44,25 @@ mkfs.fat -F 32 /dev/$efiDrive
 mkswap /dev/$swapDrive
 mkfs.btrfs /dev/$rootDrive
 
-# mounte install Drive to /mnt
-#mount -o noatime,compress=zstd /dev/$rootDrive /mnt
-mount -o noatime /dev/$rootDrive /mnt
+echo "mount installDrive to /mnt"
+mount -o noatime,compress=zstd /dev/$rootDrive /mnt
 
-#create Subvolumes
+echo "create subvolumes"
 btrfs subvolume create /mnt/root
 btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/data
 btrfs subvolume create /mnt/snapshots
 btrfs subvolume create /mnt/var_log
 
-#unmount drive
+echo "unmount installDrive"
 umount /mnt
 
-#mount subvolumes
-#mount -o noatime,compress=zstd,subvol=root /dev/$rootDrive /mnt
-#mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$rootDrive /mnt/home
-#mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
-#mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$rootDrive /mnt/var/log
-#mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
-mount -o noatime,subvol=root /dev/$rootDrive /mnt
-mount --mkdir -o noatime,subvol=home /dev/$rootDrive /mnt/home
-mount --mkdir -o noatime,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
-mount --mkdir -o noatime,subvol=var_logs /dev/$rootDrive /mnt/var/log
-mount --mkdir -o noatime,subvol=data /dev/$rootDrive /mnt/data
+echo "mount subvolumes"
+mount -o noatime,compress=zstd,subvol=root /dev/$rootDrive /mnt
+mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$rootDrive /mnt/home
+mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
+mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$rootDrive /mnt/var/log
+mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
 
