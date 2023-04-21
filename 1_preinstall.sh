@@ -17,6 +17,17 @@ lsblk -l
 echo "set install drive to: "
 read installDrive
 
+echo "run parted"
+echo "efi partition"
+parted /dev/$installDrive mkpart primary fat32 3MB 515MB
+echo "swap partition"
+parted /dev/$installDrive mkpart primary linux-swap 515MB 2563MB
+echo "root partition"
+parted /dev/$installDrive mkpart primary btrfs 2563MB 100%
+
+echo "show devices after partitioning"
+lsblk -l
+
 echo "set swap drive: "
 read swapDrive
 
