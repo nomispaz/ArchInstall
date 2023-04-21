@@ -20,8 +20,10 @@ read installDrive
 echo "run parted"
 echo "efi partition"
 parted /dev/$installDrive mkpart primary fat32 3MB 515MB
+
 echo "swap partition"
 parted /dev/$installDrive mkpart primary linux-swap 515MB 2563MB
+
 echo "root partition"
 parted /dev/$installDrive mkpart primary btrfs 2563MB 100%
 
@@ -36,6 +38,11 @@ read swapDrive
 
 echo "set root drive to: "
 read rootDrive
+
+echo "format partitions"
+mkfs.fat -F 32 /dev/$efiDrive
+mkswap /dev/$swapDrive
+mkfs.btrfs /dev/$rootDrive
 
 # mounte install Drive to /mnt
 #mount -o noatime,compress=zstd /dev/$rootDrive /mnt
