@@ -48,11 +48,16 @@ btrfs subvolume create /mnt/var_log
 umount /mnt
 
 #mount subvolumes
-mount -o noatime,compress=zstd,subvol=root /dev/$installDrive /mnt
-mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$installDrive /mnt/home
-mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$installDrive /mnt/.snapshots
-mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$installDrive /mnt/var/log
-mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$installDrive /mnt/data
+#mount -o noatime,compress=zstd,subvol=root /dev/$installDrive /mnt
+#mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$installDrive /mnt/home
+#mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$installDrive /mnt/.snapshots
+#mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$installDrive /mnt/var/log
+#mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$installDrive /mnt/data
+mount -o noatime,subvol=root /dev/$installDrive /mnt
+mount --mkdir -o noatime,subvol=home /dev/$installDrive /mnt/home
+mount --mkdir -o noatime,subvol=snapshots /dev/$installDrive /mnt/.snapshots
+mount --mkdir -o noatime,subvol=var_logs /dev/$installDrive /mnt/var/log
+mount --mkdir -o noatime,subvol=data /dev/$installDrive /mnt/data
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
 
