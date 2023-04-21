@@ -6,10 +6,6 @@
 # Version 1
 # Date 20.04.2023
 
-echo "Enter chroot"
-
-arch-chroot /mnt
-
 echo "set locales and time"
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
