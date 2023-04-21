@@ -18,7 +18,6 @@ sudo timedatectl set-ntp true
 sudo hwclock --systohc
 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 echo "KEYMAP=de" >> /etc/vconsole.conf
 echo "XMGneo15Arch" >> /etc/hostname
@@ -38,14 +37,14 @@ zsh zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-
 calibre chromium clipgrab discord keepassxc kompare notepadqq obs-studio qt5-wayland spectacle \
 thunderbird veracrypt vlc breeze-gtk dolphin kate kcalc kde-gtk-config khotkeys kinfocenter kinit \
 konsole kscreen partitionmanager plasma-desktop plasma-disks plasma-nm plasma-pa plasma-systemmonitor \
-plasma-wayland-session powerdevil sddm-kcm screenfetch
+plasma-wayland-session powerdevil sddm-kcm screenfetch base plasma
 
 #nvidia
 pacman -Syu --noconfirm nvidia-open-dkms nvidia-utils nvidia-settings nvidia-prime lib32-nvidia-utils
 
 #gaming
 pacman -S --noconfirm vulkan-icd-loader lib32-vulkan-icd-loader \
-gamescope gamemode steam lutris wine lib32-gnutls libretro-mgba wine-mono winetricks
+gamescope gamemode steam lutris wine lib32-gnutls libretro-mgba wine-mono wine-gecko winetricks
 
 #additional qemu
 pacman -S --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq
