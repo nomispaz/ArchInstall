@@ -17,7 +17,7 @@ lsblk -l
 echo "set install drive to: "
 read installDrive
 
-echo "if no gpt Partition-Table exists, create it"
+echo "if no gpt Partition-Table exists, create it. If it exists, don'e overwrite --> commented"
 #parted /dev/$installDrive mklabel gpt
 
 echo "run parted"
