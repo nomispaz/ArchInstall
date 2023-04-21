@@ -9,13 +9,16 @@
 echo "set keyboard-layout to german"
 loadkeys de-latin1
 
-echo "prepare Drives with gparted"
+echo "prepare Drives with parted"
 
 echo "show devices"
 lsblk -l
 
 echo "set install drive to: "
 read installDrive
+
+echo "if no gpt Partition-Table exists, create it"
+#parted /dev/$installDrive mklabel gpt
 
 echo "run parted"
 echo "efi partition"
