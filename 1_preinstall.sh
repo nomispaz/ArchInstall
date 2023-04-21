@@ -28,15 +28,18 @@ parted /dev/$installDrive mkpart primary btrfs 2563MB 100%
 echo "show devices after partitioning"
 lsblk -l
 
-echo "set swap drive: "
-read swapDrive
-
 echo "set EFI drive to: "
 read efiDrive
 
+echo "set swap drive: "
+read swapDrive
+
+echo "set root drive to: "
+read rootDrive
+
 # mounte install Drive to /mnt
-#mount -o noatime,compress=zstd /dev/$installDrive /mnt
-mount -o noatime /dev/$installDrive /mnt
+#mount -o noatime,compress=zstd /dev/$rootDrive /mnt
+mount -o noatime /dev/$rootDrive /mnt
 
 #create Subvolumes
 btrfs subvolume create /mnt/root
@@ -49,16 +52,16 @@ btrfs subvolume create /mnt/var_log
 umount /mnt
 
 #mount subvolumes
-#mount -o noatime,compress=zstd,subvol=root /dev/$installDrive /mnt
-#mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$installDrive /mnt/home
-#mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$installDrive /mnt/.snapshots
-#mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$installDrive /mnt/var/log
-#mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$installDrive /mnt/data
-mount -o noatime,subvol=root /dev/$installDrive /mnt
-mount --mkdir -o noatime,subvol=home /dev/$installDrive /mnt/home
-mount --mkdir -o noatime,subvol=snapshots /dev/$installDrive /mnt/.snapshots
-mount --mkdir -o noatime,subvol=var_logs /dev/$installDrive /mnt/var/log
-mount --mkdir -o noatime,subvol=data /dev/$installDrive /mnt/data
+#mount -o noatime,compress=zstd,subvol=root /dev/$rootDrive /mnt
+#mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$rootDrive /mnt/home
+#mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
+#mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$rootDrive /mnt/var/log
+#mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
+mount -o noatime,subvol=root /dev/$rootDrive /mnt
+mount --mkdir -o noatime,subvol=home /dev/$rootDrive /mnt/home
+mount --mkdir -o noatime,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
+mount --mkdir -o noatime,subvol=var_logs /dev/$rootDrive /mnt/var/log
+mount --mkdir -o noatime,subvol=data /dev/$rootDrive /mnt/data
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
 
