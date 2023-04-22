@@ -70,6 +70,13 @@ edk2-ovmf \
 bridge-utils \
 dnsmasq
 
+git clone https://github.com/nomispaz/ArchInstall
+cd ArchInstall
+
+echo "setup dracut hooks"
+cp -r etc/* /etc/
+cp -r usr/* /usr/
+
 dracut -f
 
 echo "install grub"
