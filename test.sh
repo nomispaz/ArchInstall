@@ -162,6 +162,7 @@ calibre chromium clipgrab discord keepassxc kompare notepadqq obs-studio qt5-way
 thunderbird veracrypt vlc breeze-gtk dolphin kate kcalc kde-gtk-config khotkeys kinfocenter kinit \
 konsole kscreen partitionmanager plasma-desktop plasma-disks plasma-nm plasma-pa plasma-systemmonitor \
 plasma-wayland-session powerdevil sddm-kcm screenfetch base plasma \
+dracut \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
