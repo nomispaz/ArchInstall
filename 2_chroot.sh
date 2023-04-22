@@ -76,6 +76,8 @@ cd ArchInstall
 echo "setup dracut hooks"
 cp -r etc/* /etc/
 cp -r usr/* /usr/
+chmod +x /usr/local/bin/dracut-install.sh
+chmod +x /usr/local/bin/dracut-remove.sh
 
 dracut -f
 
