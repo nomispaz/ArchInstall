@@ -26,3 +26,4 @@ sudo chsh -s /bin/zsh
 
 # TODO: snapper, rkhunter, tuxedo-keyboard, tuxedo-control-center
 # TODO2: dracut-hooks? dkms-hooks?
+# check how to install from rpm-packages (tuxedo-keyboard, tuxedo-control-center and discord)
