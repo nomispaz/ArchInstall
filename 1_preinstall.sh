@@ -43,7 +43,7 @@ echo "set root drive to: "
 read rootDrive
 
 echo "format partitions"
-mkfs.fat -F 32 /dev/$efiDrive
+mkfs.vfat -F 32 /dev/$efiDrive
 mkswap /dev/$swapDrive
 mkfs.btrfs /dev/$rootDrive
 
