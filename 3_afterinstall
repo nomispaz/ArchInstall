@@ -25,3 +25,4 @@ echo "enter root password"
 sudo chsh -s /bin/zsh
 
 # TODO: snapper, rkhunter, tuxedo-keyboard, tuxedo-control-center
+# TODO2: dracut-hooks? dkms-hooks?
