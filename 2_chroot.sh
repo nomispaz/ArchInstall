@@ -32,7 +32,11 @@ keepassxc \
 obs-studio \
 thunderbird \
 veracrypt \
-vlc
+vlc \
+flatpak \
+firelight \
+testdisk \
+freeplane
 
 echo "Install nvidia-open"
 pacman -Syu --noconfirm \
@@ -86,15 +90,18 @@ systemctl enable firewalld.service
 systemctl enable acpid.service
 systemctl enable sddm.service
 systemctl enable apparmor.service
+systemctl enable dmks.service
 firewall-cmd --set-default-zone block
 
 echo "set root password"
 passwd
 
 echo "create user and set password"
-useradd -m simonheise
-usermod -aG sys,wheel,users,rfkill,simonheise,libvirt simonheise
-passwd simonheise
+echo "Enter username: "
+read user
+useradd -m $user
+usermod -aG sys,wheel,users,rfkill,$user,libvirt $user
+passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
