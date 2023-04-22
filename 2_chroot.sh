@@ -4,7 +4,7 @@
 #
 # Script by nomispaz
 # Version 1
-# Date 22.04.2023
+# Date 23.04.2023
 
 echo "set locales and time"
 
