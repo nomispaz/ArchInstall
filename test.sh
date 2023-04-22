@@ -56,6 +56,7 @@ btrfs subvolume create /mnt/home
 btrfs subvolume create /mnt/data
 btrfs subvolume create /mnt/snapshots
 btrfs subvolume create /mnt/var_log
+btrfs subvolume create /mnt/var_cache
 
 echo "unmount installDrive"
 umount /mnt
@@ -63,9 +64,11 @@ umount /mnt
 echo "mount subvolumes"
 mount -o noatime,compress=zstd,subvol=root /dev/$rootDrive /mnt
 mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$rootDrive /mnt/home
+mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
 mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
 mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$rootDrive /mnt/var/log
-mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
+mount --mkdir -o noatime,compress=zstd,subvol=var_chache /dev/$rootDrive /mnt/var/cache
+
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
 
@@ -80,7 +83,6 @@ grub \
 intel-ucode \
 amd-ucode \
 nano \
-vim \
 openssh \
 htop \
 wget \
@@ -157,16 +159,47 @@ xorg-xlsclients \
 xorg-xrandr \
 zsh \
 zsh-autosuggestions \
-zsh-completions zsh-history-substring-search zsh-syntax-highlighting \
-calibre chromium clipgrab discord keepassxc kompare notepadqq obs-studio qt5-wayland spectacle \
-thunderbird veracrypt vlc breeze-gtk dolphin kate kcalc kde-gtk-config khotkeys kinfocenter kinit \
-konsole kscreen partitionmanager plasma-desktop plasma-disks plasma-nm plasma-pa plasma-systemmonitor \
-plasma-wayland-session powerdevil sddm-kcm screenfetch base plasma \
+zsh-completions \
+zsh-history-substring-search \
+zsh-syntax-highlighting \
+calibre \
+chromium \
+clipgrab \
+discord \
+keepassxc \
+kompare \
+obs-studio \
+qt5-wayland \
+spectacle \
+thunderbird \
+veracrypt \
+vlc \
+breeze-gtk \
+dolphin \
+kate \
+kcalc \
+kde-gtk-config \
+khotkeys \
+kinfocenter \
+kinit \
+konsole \
+kscreen \
+partitionmanager \
+plasma-desktop \
+plasma-disks \
+plasma-nm \
+plasma-pa \
+plasma-systemmonitor \
+plasma-wayland-session \
+powerdevil \
+sddm-kcm \
+screenfetch \
+plasma \
 dracut \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
-cp 2_install.sh /mnt
+cp 2_chroot.sh /mnt
 
 echo "Next steps: Enter chroot. After that, run chmod +x 2_install.sh and then ./2_install.sh"
 #arch-chroot /mnt
