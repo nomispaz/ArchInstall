@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# 3_afterinstal.sh
+#
+# Script by nomispaz
+# Version 1
+# Date 22.04.2023
+
+#enable wayland in different programs
+mkdir -p /home/$user/.config/environment.d/
+echo "MOZ_ENABLE_WAYLAND=1" >> /home/$user/.config/environment.d/envvars.conf
+
+echo "renew clamav database"
+sudo freshclam
+
+echo "add flatpak-repo"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo "activate zsh shell"
+cp zshrc ~/.zshrc
+#to be able to chsh
+echo "enter user password"
+chsh -s /bin/zsh
+echo "enter root password"
+sudo chsh -s /bin/zsh
+
+# TODO: snapper, rkhunter, tuxedo-keyboard, tuxedo-control-center
