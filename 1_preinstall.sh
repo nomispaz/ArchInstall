@@ -85,5 +85,5 @@ genfstab -U /mnt > /mnt/etc/fstab
 #preinstall finished. Continue with arch-chroot
 cp 2_install.sh /mnt
 
-echo "Enter chroot. After that, run chmod +x 2_install.sh and then ./2_install.sh"
-arch-chroot /mnt
+echo "Next steps: Enter chroot. After that, run chmod +x 2_install.sh and then ./2_install.sh"
+#arch-chroot /mnt
