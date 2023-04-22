@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# preinstall.sh
+# 1_install.sh
 #
-# Script by LordPazifist
-# Version 2
-# Date 20.04.2023
+# Script by nomispaz
+# Version 1
+# Date 23.04.2023
 
 echo "set keyboard-layout to german"
 loadkeys de-latin1
