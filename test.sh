@@ -187,6 +187,7 @@ sddm-kcm \
 screenfetch \
 plasma \
 dracut \
+dkms \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
