@@ -19,15 +19,18 @@ echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
 echo "XMGneo15Arch" >> /etc/hostname
 locale-gen
 
+echo "[multilib]" | tee -a /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" | tee -a /etc/pacman.conf
+
 #nvidia
-#pacman -Syu --noconfirm nvidia-open-dkms nvidia-utils nvidia-settings nvidia-prime lib32-nvidia-utils
+pacman -Syu --noconfirm nvidia-open-dkms nvidia-utils nvidia-settings nvidia-prime lib32-nvidia-utils
 
 #gaming
-#pacman -S --noconfirm vulkan-icd-loader lib32-vulkan-icd-loader \
-#gamescope gamemode steam lutris wine lib32-gnutls libretro-mgba wine-mono wine-gecko winetricks
+pacman -Syu --noconfirm vulkan-icd-loader lib32-vulkan-icd-loader \
+gamescope gamemode steam lutris wine lib32-gnutls libretro-mgba wine-mono wine-gecko winetricks
 
 #additional qemu
-pacman -S --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq
+pacman -Syu --noconfirm virt-manager qemu qemu-arch-extra edk2-ovmf bridge-utils dnsmasq
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
