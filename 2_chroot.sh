@@ -81,6 +81,18 @@ cp -r usr/* /usr/
 chmod +x /usr/local/bin/dracut-install.sh
 chmod +x /usr/local/bin/dracut-remove.sh
 
+echo "install yay and tuxedo-packages"
+pacman -Syu --needed git base-devel go
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+cd ..
+
+yay tuxedo-keyboard-dkms
+yay tuxedo-keyboard-ite-dkms
+yay tuxedo-control-center
+
 dracut -f
 
 echo "install grub"
@@ -122,16 +134,6 @@ passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
-
-echo "install yay and tuxedo-packages"
-pacman -Syu --needed git base-devel go
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-
-yay tuxedo-keyboard-dkms
-yay tuxedo-keyboard-ite-dkms
-yay tuxedo-control-center
 
 echo "copy config files to new user"
 cp -r .config/* /home/$user/.config/
