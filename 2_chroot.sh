@@ -110,7 +110,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "enable services"
 systemctl enable NetworkManager.service
 systemctl enable bluetooth.service
-systemctl enable cups.service.service
+systemctl enable cups.service
 systemctl enable sshd.service
 systemctl enable avahi-daemon.service
 systemctl enable libvirtd.service
@@ -118,8 +118,7 @@ systemctl enable firewalld.service
 systemctl enable acpid.service
 systemctl enable sddm.service
 systemctl enable apparmor.service
-systemctl enable dmks.service
-systemctl enable grub-btrfsd
+systemctl enable dkms.service
 firewall-cmd --set-default-zone block
 
 echo "set root password"
