@@ -107,6 +107,7 @@ systemctl enable acpid.service
 systemctl enable sddm.service
 systemctl enable apparmor.service
 systemctl enable dmks.service
+systemctl enable grub-btrfsd
 firewall-cmd --set-default-zone block
 
 echo "set root password"
