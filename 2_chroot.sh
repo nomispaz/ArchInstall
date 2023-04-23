@@ -93,7 +93,7 @@ yay tuxedo-keyboard-dkms
 yay tuxedo-keyboard-ite-dkms
 yay tuxedo-control-center
 
-dracut -f
+dracut --no-kernel -f
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
@@ -133,15 +133,6 @@ passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
-
-echo "copy config files to new user"
-mkdir -p /home/$user/.config/
-cp -r .config/* /home/$user/.config/
-cp .zshrc /home/$user/
-
-echo "copy install-files to /home/$user"
-mkdir -p /home/$user/ArchInstall
-cp 3_afterinstall.sh /home/$user/ArchInstall
 
 echo "remove Archinstall folder from chroot"
 cd ..
