@@ -33,9 +33,10 @@ sudo rkhunter --propupd
 sudo rkhunter -c -sk
 
 # configure snapper
-#sudo snapper -c root create-config /
+sudo umount /.snapshots
+sudo rm -r /.snapshots
+sudo snapper -c root create-config /
 #read UUID of rootpartition and write into variable
-#rootUUID=$(cat /etc/fstab | sed -nE 's/.*UUID=(.*)+ \/.*+root.*$/\1/p')
-#sudo mount UUID=$rootUUID /.snapshots
-#echo "UUID=$rootUUID /.smapshots btrfs subvol=snapshots,compress=zstd:1 0 0" | sudo tee -a /etc/fstab
-#sudo chmod 750 /.snapshots/
+rootUUID=$(cat /etc/fstab | sed -nE 's/.*UUID=(.*)+ \/.*+root.*$/\1/p')
+sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
+sudo chmod 750 /.snapshots/
