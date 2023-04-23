@@ -189,6 +189,7 @@ plasma \
 dracut \
 dkms \
 cpupower \
+snapper \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
