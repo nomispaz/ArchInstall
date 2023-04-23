@@ -190,7 +190,6 @@ dracut \
 dkms \
 cpupower \
 snapper \
-grub-btrfs \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
