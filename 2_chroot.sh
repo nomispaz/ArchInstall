@@ -135,6 +135,7 @@ echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoe
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
 echo "copy config files to new user"
+mkdir -p /home/$user/.config/
 cp -r .config/* /home/$user/.config/
 cp .zshrc /home/$user/
 
