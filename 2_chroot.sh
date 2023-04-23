@@ -82,7 +82,7 @@ chmod +x /usr/local/bin/dracut-install.sh
 chmod +x /usr/local/bin/dracut-remove.sh
 
 echo "install yay and tuxedo-packages"
-pacman -Syu --needed git base-devel go
+pacman -Syu --noconfirm --needed git base-devel go
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
