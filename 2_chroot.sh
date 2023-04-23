@@ -93,7 +93,8 @@ yay tuxedo-keyboard-dkms
 yay tuxedo-keyboard-ite-dkms
 yay tuxedo-control-center
 
-/usr/local/bin/dracut-install.sh --no-kernel -f
+echo "reinstall kernels to trigger dracut"
+pacman -Syu linux linux-zen
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
