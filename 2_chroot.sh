@@ -92,6 +92,9 @@ echo 'GRUB_DISABLE_OS_PROBER="false"' >> /etc/default/grub
 echo "set kernel parameter"
 sed -i 's/quiet/quiet mitigations=auto security=apparmor amd_pstate=passive/g' /etc/default/grub
 
+echo "prepare grub-btrfs and grub-integration. Snapper config will be done in 3_afterinstall.sh"
+echo 'GRUB_BTRFS_SNAPSHOT_KERNEL_PARAMETERS="rd.live.overlay.overlayfs=1"' >> /etc/default/grub-btrfs/config
+
 echo "generate grub"
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -134,5 +137,7 @@ cp 3_afterinstall.sh /home/$user/ArchInstall
 echo "remove Archinstall folder from chroot"
 cd ..
 rm -R ArchInstall
+
+
 
 exit
