@@ -188,6 +188,7 @@ screenfetch \
 plasma \
 dracut \
 dkms \
+cpupower \
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
