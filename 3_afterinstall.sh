@@ -31,9 +31,6 @@ chsh -s /bin/zsh
 echo "enter root password"
 sudo chsh -s /bin/zsh
 
-# TODO: tuxedo-keyboard, tuxedo-control-center
-# check how to install from rpm-packages (tuxedo-keyboard, tuxedo-control-center)
-
 echo "run rkhunter"
 sudo rkhunter --update
 sudo rkhunter --propupd
