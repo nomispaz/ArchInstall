@@ -6,6 +6,11 @@
 # Version 1
 # Date 22.04.2023
 
+echo "copy config files to new user"
+mkdir -p /home/$user/.config/
+cp -r .config/* /home/$user/.config/
+cp .zshrc /home/$user/
+
 #enable wayland in different programs
 mkdir -p /home/$user/.config/environment.d/
 echo "MOZ_ENABLE_WAYLAND=1" >> /home/$user/.config/environment.d/envvars.conf
