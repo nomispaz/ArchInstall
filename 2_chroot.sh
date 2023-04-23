@@ -70,6 +70,7 @@ edk2-ovmf \
 bridge-utils \
 dnsmasq
 
+echo "clone nomispaz ArchInstall git-repository"
 git clone https://github.com/nomispaz/ArchInstall
 cd ArchInstall
 
