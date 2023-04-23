@@ -23,7 +23,7 @@ chsh -s /bin/zsh
 echo "enter root password"
 sudo chsh -s /bin/zsh
 
-# TODO: snapper, tuxedo-keyboard, tuxedo-control-center
+# TODO: tuxedo-keyboard, tuxedo-control-center
 # check how to install from rpm-packages (tuxedo-keyboard, tuxedo-control-center and discord)
 
 echo "run rkhunter"
