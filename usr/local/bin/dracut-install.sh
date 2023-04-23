@@ -33,11 +33,11 @@ for line in "${lines[@]}"; do
 	dracut_restore_img="/usr/lib/modules/${kver}/initrd"
 
 	echo ":: Building initramfs for ${pkgbase} (${kver})"
-	dracut --force --hostonly --no-hostonly-cmdline${DRACUT_EXTRA_PARAMS} ${dracut_restore_img} "${kver}"
+	dracut --force --hostonly --no-hostonly-cmdline ${dracut_restore_img} "${kver}"
 	install -Dm644 ${dracut_restore_img} "/boot/initramfs-${pkgbase}.img"
 
     if [[ ${NO_DRACUT_FALLBACK} != "true" ]] ; then
 		echo ":: Building fallback initramfs for ${pkgbase} (${kver})"
-		dracut --force --no-hostonly${DRACUT_EXTRA_PARAMS} "/boot/initramfs-${pkgbase}-fallback.img" "${kver}"
+		dracut --force --no-hostonly "/boot/initramfs-${pkgbase}-fallback.img" "${kver}"
 	fi
 done
