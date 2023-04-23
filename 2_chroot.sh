@@ -20,6 +20,7 @@ echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
 echo "XMGneo15Arch" >> /etc/hostname
 locale-gen
 
+echo "add multilib repository"
 echo "[multilib]" | tee -a /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" | tee -a /etc/pacman.conf
 
