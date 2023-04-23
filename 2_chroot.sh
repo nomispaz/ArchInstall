@@ -123,6 +123,16 @@ passwd $user
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
+echo "install yay and tuxedo-packages"
+pacman -Syu --needed git base-devel go
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+yay tuxedo-keyboard-dkms
+yay tuxedo-keyboard-ite-dkms
+yay tuxedo-control-center
+
 echo "copy config files to new user"
 cp -r .config/* /home/$user/.config/
 cp .zshrc /home/$user/
