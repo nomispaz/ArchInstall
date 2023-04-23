@@ -35,7 +35,6 @@ thunderbird \
 veracrypt \
 vlc \
 flatpak \
-firelight \
 testdisk \
 freeplane
 
