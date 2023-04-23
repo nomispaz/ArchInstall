@@ -12,6 +12,7 @@ echo "copy config files to new user"
 mkdir -p /home/$currentUser/.config/
 cp -r .config/* /home/$currentUser/.config/
 cp .zshrc /home/$currentUser/
+cp .gtkrc-2.0 /home/$currentUser/
 
 #enable wayland in different programs
 mkdir -p /home/$currentUser/.config/environment.d/
