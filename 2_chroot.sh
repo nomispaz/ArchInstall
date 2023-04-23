@@ -93,7 +93,7 @@ yay tuxedo-keyboard-dkms
 yay tuxedo-keyboard-ite-dkms
 yay tuxedo-control-center
 
-dracut --no-kernel -f
+/usr/local/bin/dracut-install.sh --no-kernel -f
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
