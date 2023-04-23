@@ -17,16 +17,20 @@ echo "add flatpak-repo"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "activate zsh shell"
-cp zshrc ~/.zshrc
 #to be able to chsh
 echo "enter user password"
 chsh -s /bin/zsh
 echo "enter root password"
 sudo chsh -s /bin/zsh
 
-# TODO: snapper, rkhunter, tuxedo-keyboard, tuxedo-control-center
-# TODO2: dracut-hooks?
+# TODO: snapper, tuxedo-keyboard, tuxedo-control-center
 # check how to install from rpm-packages (tuxedo-keyboard, tuxedo-control-center and discord)
+
+echo "run rkhunter"
+sudo rkhunter --update
+sudo rkhunter --propupd
+#c for check q for skip keypress
+sudo rkhunter -c -sk
 
 # configure snapper
 #sudo snapper -c root create-config /
