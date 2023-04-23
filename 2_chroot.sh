@@ -121,8 +121,16 @@ passwd $user
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 
+echo "copy config files to new user"
+cp -r .config/* /home/$user/.config/
+cp .zshrc /home/$user/
+
 echo "copy install-files to /home/$user"
-mkdir -p /home/$user/Archinstall
-cp * /home/$user/Archinstall/
+mkdir -p /home/$user/ArchInstall
+cp 3_afterinstall.sh /home/$user/ArchInstall
+
+echo "remove Archinstall folder from chroot"
+cd ..
+rm -R ArchInstall
 
 exit
