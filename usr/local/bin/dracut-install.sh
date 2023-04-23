@@ -5,10 +5,6 @@ args=('--force' '--no-hostonly-cmdline')
 all=0
 lines=()
 
-if (( all )); then
-	lines=(/usr/lib/modules/*)
-fi
-
 while read -r line; do
 	if [[ "${line}" != */vmlinuz ]]; then
 		# triggers when it's a change to dracut files
@@ -22,6 +18,10 @@ while read -r line; do
 	install -Dm644 "/${line}" "/boot/vmlinuz-${pkgbase}"
 done
 
+if (( all )); then
+	lines=(/usr/lib/modules/*)
+fi
+
 for line in "${lines[@]}"; do
 	if ! pacman -Qqo "${line}/pkgbase" &> /dev/null; then
 		# if pkgbase does not belong to any package then skip this kernel
@@ -33,11 +33,10 @@ for line in "${lines[@]}"; do
 	dracut_restore_img="/usr/lib/modules/${kver}/initrd"
 
 	echo ":: Building initramfs for ${pkgbase} (${kver})"
-	dracut "${args[@]}" --hostonly ${dracut_restore_img} "${kver}"
+	dracut "${args[@]}" --hostonly "/boot/initramfs-${pkgbase}.img" --kver "$kver"
 	install -Dm644 ${dracut_restore_img} "/boot/initramfs-${pkgbase}.img"
-	
+
 	echo ":: Building fallback initramfs for ${pkgbase} (${kver})"
-	dracut "${args[@]}" --no-hostonly "/boot/initramfs-${pkgbase}-fallback.img" "${kver}"
-		
-	fi
+	dracut "${args[@]}" --no-hostonly "/boot/initramfs-${pkgbase}-fallback.img" --kver "$kver"
+	
 done
