@@ -14,6 +14,7 @@ timedatectl set-ntp true
 hwclock --systohc
 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
 echo "XMGneo15Arch" >> /etc/hostname
