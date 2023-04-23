@@ -6,14 +6,16 @@
 # Version 1
 # Date 22.04.2023
 
+currentUser = $USER
+
 echo "copy config files to new user"
-mkdir -p /home/$user/.config/
-cp -r .config/* /home/$user/.config/
-cp .zshrc /home/$user/
+mkdir -p /home/$currentUser/.config/
+cp -r .config/* /home/$currentUser/.config/
+cp .zshrc /home/$currentUser/
 
 #enable wayland in different programs
-mkdir -p /home/$user/.config/environment.d/
-echo "MOZ_ENABLE_WAYLAND=1" >> /home/$user/.config/environment.d/envvars.conf
+mkdir -p /home/$currentUser/.config/environment.d/
+echo "MOZ_ENABLE_WAYLAND=1" >> /home/$currentUser/.config/environment.d/envvars.conf
 
 echo "renew clamav database"
 sudo freshclam
