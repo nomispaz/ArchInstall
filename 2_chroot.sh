@@ -119,6 +119,8 @@ systemctl enable acpid.service
 systemctl enable sddm.service
 systemctl enable apparmor.service
 systemctl enable dkms.service
+systemctl enable clamav-daemon.service
+
 firewall-cmd --set-default-zone block
 
 echo "set root password"
