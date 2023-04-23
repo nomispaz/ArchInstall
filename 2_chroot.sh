@@ -120,3 +120,9 @@ passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
+echo "copy install-files to /home/$user"
+mkdir -p /home/$user/Archinstall
+cp * /home/$user/Archinstall/
+
+exit
