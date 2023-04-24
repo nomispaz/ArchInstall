@@ -66,8 +66,8 @@ mount -o noatime,compress=zstd,subvol=root /dev/$rootDrive /mnt
 mount --mkdir -o noatime,compress=zstd,subvol=home /dev/$rootDrive /mnt/home
 mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
 mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
-mount --mkdir -o noatime,compress=zstd,subvol=var_logs /dev/$rootDrive /mnt/var/log
-mount --mkdir -o noatime,compress=zstd,subvol=var_chache /dev/$rootDrive /mnt/var/cache
+mount --mkdir -o noatime,compress=zstd,subvol=var_log /dev/$rootDrive /mnt/var/log
+mount --mkdir -o noatime,compress=zstd,subvol=var_cache /dev/$rootDrive /mnt/var/cache
 
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
