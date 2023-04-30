@@ -130,7 +130,7 @@ passwd
 echo "create user and set password"
 echo "Enter username: "
 read user
-useradd -m $user
+useradd -m --create-home $user
 usermod -aG sys,wheel,users,rfkill,$user,libvirt $user
 passwd $user
 
