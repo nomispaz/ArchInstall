@@ -96,8 +96,11 @@ yay tuxedo-control-center
 #echo "reinstall kernels to trigger dracut"
 #pacman -Syu linux linux-zen
 echo "trigger dracut for kernels"
-dracut /boot/initramfs-linux.img --kver 6.3.2-arch1-1
-dracut /boot/initramfs-linux-zen.img --kver 6.3.2-zen1-1
+for kernel in /usr/lib/modules/*
+do
+v_kernel = $(basename "$kernel")
+dracut /boot/initramfs-linux.img --kver $v_kernel
+dracut /boot/initramfs-linux-zen.img --kver $v_kernel
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
