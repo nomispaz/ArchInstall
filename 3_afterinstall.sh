@@ -14,7 +14,7 @@ cp home/.gtkrc-2.0 /home/$USER/
 
 #enable wayland in different programs
 mkdir -p /home/$USER/.config/environment.d/
-echo "MOZ_ENABLE_WAYLAND=1" >> /home/$currentUser/.config/environment.d/envvars.conf
+echo "MOZ_ENABLE_WAYLAND=1" >> /home/$USER/.config/environment.d/envvars.conf
 
 echo "renew clamav database"
 sudo freshclam
