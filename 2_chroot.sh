@@ -25,7 +25,7 @@ echo "[multilib]" | tee -a /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" | tee -a /etc/pacman.conf
 
 echo "Install various programs"
-pacman -Syu --noconfirm \
+pacman -Syu --noconfirm --needed \
 calibre \
 chromium \
 clipgrab \
@@ -40,7 +40,7 @@ testdisk \
 freeplane
 
 echo "Install nvidia-open"
-pacman -Syu --noconfirm \
+pacman -Syu --noconfirm --needed \
 nvidia-open-dkms \
 nvidia-utils \
 nvidia-settings \
@@ -48,7 +48,7 @@ nvidia-prime \
 lib32-nvidia-utils
 
 echo "Install gaming-tools"
-pacman -Syu --noconfirm \
+pacman -Syu --noconfirm --needed \
 vulkan-icd-loader \
 lib32-vulkan-icd-loader \
 gamescope \
@@ -63,7 +63,7 @@ wine-gecko \
 winetricks
 
 echo "install qemu and libvirt"
-pacman -Syu --noconfirm \
+pacman -Syu --noconfirm --needed \
 virt-manager \
 qemu \
 qemu-arch-extra \
