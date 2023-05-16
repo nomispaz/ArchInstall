@@ -99,8 +99,8 @@ echo "trigger dracut for kernels"
 for kernel in /usr/lib/modules/*
 do
 v_kernel = $(basename "$kernel")
-dracut /boot/initramfs-linux.img --kver $v_kernel
-dracut /boot/initramfs-linux-zen.img --kver $v_kernel
+dracut /boot/initramfs-linux.img --force --kver $v_kernel
+dracut /boot/initramfs-linux-zen.img --force --kver $v_kernel
 
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
