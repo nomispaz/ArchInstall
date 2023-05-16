@@ -6,16 +6,14 @@
 # Version 1
 # Date 22.04.2023
 
-currentUser = $USER
-
 echo "copy config files to new user"
-mkdir -p /home/$currentUser/.config/
-cp -r .config/* /home/$currentUser/.config/
-cp home/.zshrc /home/$currentUser/
-cp home/.gtkrc-2.0 /home/$currentUser/
+mkdir -p /home/$USER/.config/
+cp -r .config/* /home/$USER/.config/
+cp home/.zshrc /home/$USER/
+cp home/.gtkrc-2.0 /home/$USER/
 
 #enable wayland in different programs
-mkdir -p /home/$currentUser/.config/environment.d/
+mkdir -p /home/$USER/.config/environment.d/
 echo "MOZ_ENABLE_WAYLAND=1" >> /home/$currentUser/.config/environment.d/envvars.conf
 
 echo "renew clamav database"
