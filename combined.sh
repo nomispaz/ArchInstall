@@ -72,6 +72,10 @@ mount --mkdir -o noatime,compress=zstd,subvol=var_cache /dev/$rootDrive /mnt/var
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 swapon /dev/$swapDrive
 
+echo "add multilib repository"
+echo "[multilib]" | tee -a /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" | tee -a /etc/pacman.conf
+
 pacstrap /mnt \
 base \
 base-devel \
