@@ -6,6 +6,18 @@
 # Version 1
 # Date 22.04.2023
 
+echo "install yay and tuxedo-packages"
+pacman -Syu --noconfirm --needed git base-devel go
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+cd ..
+
+yay tuxedo-keyboard-dkms
+yay tuxedo-keyboard-ite-dkms
+yay tuxedo-control-center
+
 echo "copy config files to new user"
 mkdir -p /home/$USER/.config/
 cp -r .config/* /home/$USER/.config/
