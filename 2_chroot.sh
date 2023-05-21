@@ -11,7 +11,9 @@ echo "set locales and time"
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 timedatectl set-timezone Europe/Berlin
 timedatectl set-ntp true
-hwclock --systohc
+
+#parallel usage of opensuse tumbleweed --> don't change hwclock
+#hwclock --systohc
 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -80,18 +82,6 @@ cp -r etc/* /etc/
 cp -r usr/* /usr/
 chmod +x /usr/local/bin/dracut-install.sh
 chmod +x /usr/local/bin/dracut-remove.sh
-
-echo "install yay and tuxedo-packages"
-pacman -Syu --noconfirm --needed git base-devel go
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-
-cd ..
-
-yay tuxedo-keyboard-dkms
-yay tuxedo-keyboard-ite-dkms
-yay tuxedo-control-center
 
 #echo "reinstall kernels to trigger dracut"
 #pacman -Syu linux linux-zen
