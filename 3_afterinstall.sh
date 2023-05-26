@@ -55,3 +55,5 @@ sudo snapper -c root create-config /
 rootUUID=$(cat /etc/fstab | sed -nE 's/.*UUID=(.*)+ \/.*+root.*$/\1/p')
 sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
 sudo chmod 750 /.snapshots/
+
+#nmcli con mod SiSaFS7 connection.autoconnect true
