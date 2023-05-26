@@ -59,3 +59,11 @@ sudo chmod 750 /.snapshots/
 #nmcli con mod SiSaFS7 connection.autoconnect true
 #makepkg -q >> PKGBUILD
 #makepkg -sri
+
+#update fstab
+# tumbleweed data
+#UUID=7eda7945-48f8-4bda-949b-d01460d66b7b  /data                   btrfs  subvol=/@/data                0  0
+
+#UUID=5478d2bc-1d51-467f-b488-87fed42efffb  /mnt/nvme2              btrfs  defaults                      0  0
+
+#UUID=30039aa4-8303-4e90-a82c-4ab549f048f6  /mnt/nvme2_xfs          xfs    defaults,noatime              0  0
