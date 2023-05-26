@@ -99,7 +99,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchL
 echo 'GRUB_DISABLE_OS_PROBER="false"' >> /etc/default/grub
 
 echo "set kernel parameter"
-sed -i 's/quiet/quiet mitigations=auto security=apparmor amd_pstate=passive/g' /etc/default/grub
+sed -i 's/quiet/quiet mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
 
 echo "generate grub"
 grub-mkconfig -o /boot/grub/grub.cfg
