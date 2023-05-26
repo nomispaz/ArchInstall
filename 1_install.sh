@@ -36,9 +36,9 @@ read efiDrive
 echo "set root drive to: "
 read rootDrive
 
-#echo "format partitions"
-#mkfs.vfat -F 32 /dev/$efiDrive
-#mkfs.btrfs /dev/$rootDrive
+echo "format partitions"
+mkfs.vfat -F 32 /dev/$efiDrive
+mkfs.btrfs /dev/$rootDrive
 
 echo "mount installDrive to /mnt"
 mount -o noatime,compress=zstd /dev/$rootDrive /mnt
@@ -64,6 +64,7 @@ mount --mkdir -o noatime,compress=zstd,subvol=var_cache /dev/$rootDrive /mnt/var
 
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 
+#pacstrab kde
 pacstrap /mnt \
 base \
 base-devel \
