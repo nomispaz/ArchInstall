@@ -38,8 +38,7 @@ thunderbird \
 veracrypt \
 vlc \
 flatpak \
-testdisk \
-freeplane
+testdisk
 
 echo "Install nvidia-open"
 pacman -Syu --noconfirm --needed \
