@@ -118,13 +118,16 @@ bluez \
 bluez-utils \
 clamav \
 cups \
+polkit \
 exfatprogs \
 file-roller \
 firefox \
 firewalld \
 ghostscript \
 hplip \
+kio-extras \
 hwdetect \
+mtpfs \
 hwinfo \
 man \
 nfs-utils \
@@ -146,7 +149,6 @@ zsh-history-substring-search \
 zsh-syntax-highlighting \
 kompare \
 qt5-wayland \
-qt6-wayland \
 dolphin \
 kate \
 gparted \
@@ -157,7 +159,18 @@ dracut \
 dkms \
 cpupower \
 snapper \
-hyprland
+hyprland \
+qt5ct \
+libva \
+network-manager-applet \
+brightnessctl \
+nerd-fonts \
+otf-font-awesome \
+wofi \
+waybar \
+xdg-desktop-portal \
+xdg-desktop-portal-hyprland \
+pamixer
 --noconfirm
 
 genfstab -U /mnt > /mnt/etc/fstab
