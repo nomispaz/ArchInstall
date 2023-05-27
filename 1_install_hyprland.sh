@@ -104,6 +104,7 @@ linux-zen-headers \
 xorg-xwayland \
 alacritty \
 dolphin \
+breeze-icons
 ark \
 egl-wayland \
 acpi \
@@ -125,7 +126,6 @@ firefox \
 firewalld \
 ghostscript \
 hplip \
-kio-extras \
 hwdetect \
 mtpfs \
 hwinfo \
@@ -147,13 +147,12 @@ zsh-autosuggestions \
 zsh-completions \
 zsh-history-substring-search \
 zsh-syntax-highlighting \
-kompare \
+meld \
 qt5-wayland \
 dolphin \
 kate \
 gparted \
-powerdevil \
-sddm-kcm \
+sddm \
 screenfetch \
 dracut \
 dkms \
@@ -170,8 +169,13 @@ wofi \
 waybar \
 xdg-desktop-portal \
 xdg-desktop-portal-hyprland \
-pamixer
---noconfirm
+pamixer \
+pavucontrol \
+dunst \
+swaylock \
+libqalculate \
+polkit-kde-agent \
+libqalculate
 
 genfstab -U /mnt > /mnt/etc/fstab
 cp 2_chroot.sh /mnt
