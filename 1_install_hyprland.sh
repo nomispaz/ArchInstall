@@ -3,7 +3,7 @@
 # 1_install.sh
 #
 # Script by nomispaz
-# Version 1
+# Version 2
 # Date 23.04.2023
 
 echo "set keyboard-layout to german"
