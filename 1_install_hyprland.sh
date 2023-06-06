@@ -175,7 +175,13 @@ swaylock \
 libqalculate \
 polkit-kde-agent \
 libqalculate \
-kitty
+kitty \
+swaybg \
+ranger \
+w3mimgdisplay \
+xsel \
+snap-pac
+
 
 genfstab -U /mnt > /mnt/etc/fstab
 cp 2_chroot.sh /mnt
