@@ -60,7 +60,8 @@ lib32-gnutls \
 libretro-mgba \
 wine-mono \
 wine-gecko \
-winetricks
+winetricks \
+mangohud
 
 echo "install qemu and libvirt"
 pacman -Syu --noconfirm --needed \
