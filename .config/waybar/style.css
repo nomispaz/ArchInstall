@@ -4,9 +4,7 @@
     font-family: Cartograph CF Nerd Font, monospace;
     font-size:     15px;
     font-weight:   bold;
-    box-shadow:    none;
-    text-shadow:   none;
-    transition-duration: 0s;
+    min-height: 0;
 }
 
 window#waybar {
@@ -22,12 +20,12 @@ tooltip {
     border-color: #11111b;
 }
 
-window#waybar.solo {
-    color: rgba(53, 185, 171, 1);
-}
-
 #workspaces {
-    margin: 0 5px;
+    background: #1e1e2e;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding-right: 0px;
+    padding-left: 5px;
 }
 
 #custom-scratchpad {
@@ -57,8 +55,56 @@ window#waybar.solo {
     border-radius: 10px;
 }
 
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 10px;
+}
+
+#tray,
+#window,
 #mode,
 #custom-layout,
+#idle_inhibitor,
+#network,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#battery,
+#pulseaudio,
+#pulseaudio.microphone,
+#clock,
+
+#idle_inhibitor {
+    background: #1e1e2e;
+    color: #a6e3a1;
+    border-radius: 0 10px 10px 0;
+    margin-right: 10px;
+    border-left: 0px;
+    margin: 3px 0px;
+    border: 1px solid #181825;
+    padding: 0px 10px
+}
+
+#network {
+    color: #f9e2af;
+    border-left: 0px;
+    margin-right: 10px
+}
+
+#cpu {
+    color: #daa520;
+    border-left: 0px;
+    border-right: 0px
+}
+
+#memory {
+    color: #daa520;
+    border-radius: 0px 10px 10px 0px;
+    border-left: 0px;
+    margin-right: 10px
+}
 
 #temperature {
     color: #ff4500;
@@ -72,40 +118,11 @@ window#waybar.solo {
     margin-right: 10px;
 }
 
-#cpu {
-    color: #daa520;
-    border-left: 0px;
-    margin-right: 10px
-}
-
-#memory {
-    color: #daa520;
-    border-left: 0px;
-    margin-right: 10px
-}
-
-#idle_inhibitor {
-    color: #a6e3a1;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-    border-left: 0px;
-    margin: 3px 0px;
-    border: 1px solid #181825;
-    padding: 0px 10px
-}
-
 #battery {
     color: #a6e3a1;
     border-radius: 0 10px 10px 0;
     margin-right: 10px;
     border-left: 0px;
-}
-
-#clock {
-    color: #fab387;
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 5px;
-    border-right: 0px;
 }
 
 #battery.warning {
@@ -118,6 +135,13 @@ window#waybar.solo {
 
 #battery.charging {
     color: rgba(217, 216, 216, 1);
+}
+
+#clock {
+    color: #fab387;
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 5px;
+    border-right: 0px;
 }
 
 #tray {
@@ -151,10 +175,4 @@ window#waybar.solo {
     border-left: 0px;
     border-right: 0px;
     margin-right: 5px;
-}
-
-#network {
-    color: #f9e2af;
-    border-left: 0px;
-    margin-right: 10px
 }

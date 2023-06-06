@@ -1,11 +1,11 @@
 {
-    "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
     "mod": "dock",
     "exclusive": "true",
+    "passthrough": "true",
     "gtk-layer-shell": "true",
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces", "custom/scratchpad", "sway/mode", "tray"],
@@ -40,6 +40,7 @@
     },
 
     "custom/scratchpad": {
+        "icon": false,
         "format": "{icon} {count}",
         "show-empty": false,
         "format-icons": ["", ""],
