@@ -103,7 +103,8 @@ linux-zen \
 linux-zen-headers \
 xorg-xwayland \
 dolphin \
-breeze-icons
+ffmpegthumbs \
+breeze-icons \
 ark \
 egl-wayland \
 acpi \
