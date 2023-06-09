@@ -181,7 +181,8 @@ swaybg \
 ranger \
 w3mimgdisplay \
 xsel \
-snap-pac
+snap-pac \
+chrony
 
 
 genfstab -U /mnt > /mnt/etc/fstab
