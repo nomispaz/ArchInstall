@@ -182,7 +182,9 @@ ranger \
 w3mimgdisplay \
 xsel \
 snap-pac \
-chrony
+chrony \
+arch-audit \
+lynis
 
 
 genfstab -U /mnt > /mnt/etc/fstab
