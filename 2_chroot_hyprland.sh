@@ -26,10 +26,13 @@ echo "add multilib repository"
 echo "[multilib]" | tee -a /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" | tee -a /etc/pacman.conf
 
-echo "disable coredumps due to security reasons"
+echo "harden installation"
+echo "KRNL-5820 disable coredumps"
 mkdir -p /etc/systemd/coredump.conf.d/
 echo "[Coredump]" | tee -a /etc/systemd/coredump.conf.d/custom.conf
 echo "Storage=none" | tee -a /etc/systemd/coredump.conf.d/custom.conf
+
+
 
 echo "Install various programs"
 pacman -Syu --noconfirm --needed \
