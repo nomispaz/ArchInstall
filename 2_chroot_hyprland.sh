@@ -31,7 +31,8 @@ echo "KRNL-5820 disable coredumps"
 mkdir -p /etc/systemd/coredump.conf.d/
 echo "[Coredump]" | tee -a /etc/systemd/coredump.conf.d/custom.conf
 echo "Storage=none" | tee -a /etc/systemd/coredump.conf.d/custom.conf
-
+echo "* hard core 0" | tee -a /etc/security/limits.conf
+echo "* hard core 0" | tee -a /etc/security/limits.conf
 
 
 echo "Install various programs"
