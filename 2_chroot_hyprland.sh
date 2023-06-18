@@ -133,6 +133,7 @@ systemctl enable apparmor.service
 systemctl enable clamav-daemon.service
 systemctl enable nvidia-powerd.service
 systemctl enable chronyd.service
+systemctl enable clamav-freshclam.service
 
 firewall-cmd --set-default-zone block
 
