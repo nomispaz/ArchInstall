@@ -122,7 +122,8 @@ echo "enable services"
 systemctl enable NetworkManager.service
 systemctl enable bluetooth.service
 systemctl enable cups.service
-systemctl enable sshd.service
+#hardening --> don't enable sshd
+#systemctl enable sshd.service
 systemctl enable avahi-daemon.service
 systemctl enable libvirtd.service
 systemctl enable firewalld.service
