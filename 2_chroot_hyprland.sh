@@ -39,8 +39,8 @@ sed -i 's/#SHA_CRYPT_MIN_ROUNDS 5000/SHA_CRYPT_MIN_ROUNDS 500000/g' /etc/login.d
 sed -i 's/#SHA_CRYPT_MAX_ROUNDS 5000/SHA_CRYPT_MAX_ROUNDS 500000/g' /etc/login.defs
 
 echo "predefine host-file for localhost"
-echo "127.0.0.1 localhost" | tee -a /etc/host.conf
-echo "127.0.0.1 XMGneo15Arch" | tee -a /etc/host.conf
+echo "127.0.0.1 localhost" | tee -a /etc/hosts
+echo "127.0.0.1 XMGneo15Arch" | tee -a /etc/hosts
 
 
 echo "Install various programs"
