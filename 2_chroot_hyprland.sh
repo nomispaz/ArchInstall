@@ -34,6 +34,10 @@ echo "Storage=none" | tee -a /etc/systemd/coredump.conf.d/custom.conf
 echo "* hard core 0" | tee -a /etc/security/limits.conf
 echo "* hard core 0" | tee -a /etc/security/limits.conf
 
+echo "Improve password hash quality"
+sed -i 's/#SHA_CRYPT_MIN_ROUNDS 5000/SHA_CRYPT_MIN_ROUNDS 500000/g' /etc/login.defs 
+sed -i 's/#SHA_CRYPT_MAX_ROUNDS 5000/SHA_CRYPT_MAX_ROUNDS 500000/g' /etc/login.defs
+
 
 echo "Install various programs"
 pacman -Syu --noconfirm --needed \
