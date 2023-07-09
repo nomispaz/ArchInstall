@@ -168,6 +168,7 @@ otf-font-awesome \
 wofi \
 waybar \
 xdg-desktop-portal \
+xdg-desktop-portal-gtk \
 xdg-desktop-portal-hyprland \
 pamixer \
 pavucontrol \
