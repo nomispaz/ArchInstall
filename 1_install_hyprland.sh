@@ -185,7 +185,8 @@ xsel \
 snap-pac \
 chrony \
 arch-audit \
-lynis
+lynis \
+blueman
 
 
 genfstab -U /mnt > /mnt/etc/fstab
