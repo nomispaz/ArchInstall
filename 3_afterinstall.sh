@@ -55,6 +55,8 @@ sudo snapper -c root create-config /
 rootUUID=$(cat /etc/fstab | sed -nE 's/.*UUID=(.*)+ \/.*+root.*$/\1/p')
 sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
 sudo chmod 750 /.snapshots/
+sudo sed -i 's/NUMBER_LIMIT="50"/NUMBER_LIMIT="10"/g' /etc/snapper/configs/root
+sudo sed -i 's/NUMBER_LIMIT_IMPORTANT="10"/NUMBER_LIMIT_IMPORTANT="5"/g' /etc/snapper/configs/root
 
 #nmcli con mod SiSaFS7 connection.autoconnect true
 #makepkg -q >> PKGBUILD
