@@ -51,6 +51,9 @@ btrfs subvolume create /mnt/snapshots
 btrfs subvolume create /mnt/var_log
 btrfs subvolume create /mnt/var_cache
 
+#swapfile
+btrfs subvolume create /mnt/swap 
+
 echo "unmount installDrive"
 umount /mnt
 
@@ -61,6 +64,11 @@ mount --mkdir -o noatime,compress=zstd,subvol=data /dev/$rootDrive /mnt/data
 mount --mkdir -o noatime,compress=zstd,subvol=snapshots /dev/$rootDrive /mnt/.snapshots
 mount --mkdir -o noatime,compress=zstd,subvol=var_log /dev/$rootDrive /mnt/var/log
 mount --mkdir -o noatime,compress=zstd,subvol=var_cache /dev/$rootDrive /mnt/var/cache
+
+#swapfile
+mount --mkdir -o noatime,compress=zstd,subvol=swap /dev/$rootDrive /mnt/swap
+btrfs filesystem mkswapfile --size 4g --uuid clear /swap/swapfile
+swapon /swap/swapfile
 
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
 
