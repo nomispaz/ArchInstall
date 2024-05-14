@@ -15,14 +15,15 @@ os-prober
 
 pacstrap /mnt \
 xf86-input-synaptics \
-amd-ucode \
+amd-ucode
 
+pacstrap /mnt \
 openssh \
 iwd \
 networkmanager \
 wireless_tools \
 wpa_supplicant \
-smartmontools \
+smartmontools
 
 pacstrap /mnt \
 neovim \
