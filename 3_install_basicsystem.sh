@@ -11,8 +11,9 @@ pacman-contrib \
 sudo \
 grub \
 dracut \
-os-prober \
+os-prober
 
+pacstrap /mnt \
 xf86-input-synaptics \
 amd-ucode \
 
@@ -23,6 +24,7 @@ wireless_tools \
 wpa_supplicant \
 smartmontools \
 
+pacstrap /mnt \
 neovim \
 htop \
 git \
@@ -33,19 +35,21 @@ wget \
 blueman \
 alacritty \
 snapper \
-firefox \
+firefox 
 
+pacstrap /mnt \
 pipewire \
 pipewire-alsa \
 pipewire-jack \
 pipewire-pulse \
 gst-plugin-pipewire \
 libpulse \
-wireplumber \
+wireplumber
 
+pacstrap /mnt \
 apparmor \
 clamav \
-rkhunter \
+rkhunter
 
 genfstab -U /mnt > /mnt/etc/fstab
 cp *.sh /mnt
