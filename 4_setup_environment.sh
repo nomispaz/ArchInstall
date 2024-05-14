@@ -31,6 +31,15 @@ echo "predefine host-file for localhost"
 echo "127.0.0.1 localhost" | tee -a /etc/hosts
 echo "127.0.0.1 XMGneo15Arch" | tee -a /etc/hosts
 
+echo "trigger dracut for kernels"
+for kernel in /usr/lib/modules/*
+do
+v_kernel=$(basename "$kernel")
+echo $v_kernel
+dracut /boot/initramfs-linux.img --force --kver $v_kernel
+dracut /boot/initramfs-linux-zen.img --force --kver $v_kernel
+done
+
 echo "install grub"
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
 
