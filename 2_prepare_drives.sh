@@ -3,11 +3,11 @@ lsblk -l
 echo "set install drive to: "
 read installDrive
 
-echo "Create partition table by executing mklabel gpt"
-echo "Create partition by executing mkpart primary fat32 3MB 515MB"
-echo "or mkpart primary btrfs 516MB 100%"
-
-parted /dev/$installDrive
+#echo "Create partition table (only do this if no partition table exists!)"
+#parted /dev/$installDrive mklabel gpt
+#echo "Create partitions"
+#parted /dev/$installDrive mkpart primary fat32 3MB 515MB
+#parted /dev/$installDrive mkpart primary btrfs 2563MB 100%
 
 lsblk -l
 
@@ -20,16 +20,16 @@ read rootDrive
 echo "mount installDrive to /mnt"
 mount -o noatime,compress=zstd /dev/$rootDrive /mnt
 
-echo "create subvolumes"
-btrfs subvolume create /mnt/root
-btrfs subvolume create /mnt/home
-btrfs subvolume create /mnt/data
-btrfs subvolume create /mnt/snapshots
-btrfs subvolume create /mnt/var_log
-btrfs subvolume create /mnt/var_cache
+#echo "create subvolumes"
+#btrfs subvolume create /mnt/root
+#btrfs subvolume create /mnt/home
+#btrfs subvolume create /mnt/data
+#btrfs subvolume create /mnt/snapshots
+#btrfs subvolume create /mnt/var_log
+#btrfs subvolume create /mnt/var_cache
 
-echo "subolume for swap-file"
-btrfs subvolume create /mnt/swap
+#echo "subolume for swap-file"
+#btrfs subvolume create /mnt/swap
 
 echo "unmount installDrive"
 umount /mnt
