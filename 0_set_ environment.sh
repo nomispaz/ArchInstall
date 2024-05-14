@@ -1,0 +1,1 @@
+loadkeys de-latin1
