@@ -3,7 +3,11 @@ lsblk -l
 echo "set install drive to: "
 read installDrive
 
-parted /dev/$installedDrive
+echo "Create partition table by executing mklabel gpt"
+echo "Create partition by executing mkpart primary fat32 3MB 515MB"
+echo "or mkpart primary btrfs 516MB 100%"
+
+parted /dev/$installDrive
 
 lsblk -l
 
@@ -40,7 +44,7 @@ mount --mkdir -o noatime,compress=zstd,subvol=var_cache /dev/$rootDrive /mnt/var
 
 echo "mount and create swap-partition and file"
 mount --mkdir -o noatime,compress=zstd,subvol=swap /dev/$rootDrive /mnt/swap
-btrfs filesystem mkswapfile --size 4g --uuid clear /swap/swapfile
-swapon /swap/swapfile
+btrfs filesystem mkswapfile --size 4g --uuid clear /mnt/swap/swapfile
+swapon /mnt/swap/swapfile
 
 mount --mkdir /dev/$efiDrive /mnt/boot/efi
