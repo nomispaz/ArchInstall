@@ -5,6 +5,7 @@ read installDrive
 
 #echo "Create partition table (only do this if no partition table exists!)"
 #parted /dev/$installDrive mklabel gpt
+
 #echo "Create partitions"
 #parted /dev/$installDrive mkpart primary fat32 3MB 515MB
 #parted /dev/$installDrive mkpart primary btrfs 2563MB 100%
@@ -16,6 +17,10 @@ read efiDrive
 
 echo "set root drive to: "
 read rootDrive
+
+#echo "format partitions"
+#mkfs.vfat -F 32 /dev/$efiDrive
+#mkfs.btrfs /dev/$rootDrive
 
 echo "mount installDrive to /mnt"
 mount -o noatime,compress=zstd /dev/$rootDrive /mnt
