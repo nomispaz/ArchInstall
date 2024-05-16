@@ -159,6 +159,7 @@ wireplumber
 pacstrap /mnt \
 apparmor \
 clamav \
+firewalld \
 rkhunter
 #+END_SRC
 ** how to continue:
