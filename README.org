@@ -351,10 +351,18 @@ passwd $user
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 #+END_SRC
+
 ** Install personal dotfiles
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
+
+# change user from root to normal user
+su $user
+
 git clone https://github.com/nomispaz/dotfiles /home/$user/dotfiles
 cd /home/$user/dotfiles
+
+# create .config dir since it doesn't exist at that point
+mkdir /home/$user/.config
 # loop through all folders and files
 for program in $(ls -d  *)
 do
@@ -370,7 +378,7 @@ done
   - [ ] plasma-org.kde.plasma.desktop-appletsrc
   - [ ] plasmashellrc
   - [ ] powerdevilrc
-#+BEGIN_SRC bash :tangle 11_kde_configs.sh
+#+BEGIN_SRC bash :tangle 10_finish_installation.sh
 # activate numlock during startup
 kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key Numlock 0
 kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key X11LibInputXAccelProfileFlat true
@@ -385,9 +393,6 @@ kwriteconfig6 --file /home/$USER/.config/gtk-4.0/settings --group Settings --key
 # disable browserintegration and device-automount
 kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-browserintegrationreminder --key autoload false
 kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-device_automounter --key autoload false
-
-
-
 
 # virtual desktops
 kwriteconfig6 --file /home/$USER/.config/kwinrc --group Desktops --key Number 4
