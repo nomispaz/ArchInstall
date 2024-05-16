@@ -224,28 +224,7 @@ chmod +x /usr/local/bin/dracut-remove.sh
 
 cd /
 #+END_SRC
-** reinstall kernel to trigger dracut with installed hooks
-#+BEGIN_SRC bash :tangle 4_setup_environment.sh
-pacman -Syu --noconfirm --needed linux
-#+END_SRC
-** configure grub
 
-- IMPORTANT NOTE:
-  - uncomment the sections that should be used
-
-#+BEGIN_SRC bash :tangle 4_setup_environment.sh
-echo "install grub"
-grub-install --target=x86_64-efi --efi-directory=/boot/efi
-
-#echo "add nvidia-drm.modeset=1 and uncomment GRUB_DISABLE_OS_PROBER
-echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub
-
-echo "set kernel parameter"
-sed -i 's/quiet/quiet loglevel=3 mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
-
-echo "generate grub"
-grub-mkconfig -o /boot/grub/grub.cfg
-#+END_SRC
 * Install software (part 2)
 ** desktop environment gnome
 #+BEGIN_SRC bash :tangle 5_install_desktop_gnome.sh
@@ -283,7 +262,9 @@ thunderbird \
 veracrypt \
 vlc \
 flatpak \
-testdisk
+testdisk \
+screenfetch \
+meld
 #+END_SRC
 ** Install gaming tools
 #+BEGIN_SRC bash :tangle 8_gaming.sh
@@ -306,7 +287,6 @@ mangohud
 pacman -Syu --noconfirm --needed \
 virt-manager \
 qemu \
-qemu-arch-extra \
 edk2-ovmf \
 bridge-utils \
 dnsmasq
@@ -331,6 +311,29 @@ systemctl enable clamav-freshclam.service
 ** Set firewall to block
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
 firewall-cmd --set-default-zone block
+#+END_SRC
+
+** generate kernel img and install grub
+- reinstall kernel to trigger dracut with installed hooks
+#+BEGIN_SRC bash :tangle 10_finish_installation.sh
+pacman -Syu --noconfirm --needed linux
+#+END_SRC
+*** configure grub
+- IMPORTANT NOTE:
+  - uncomment the sections that should be used
+
+#+BEGIN_SRC bash :tangle 10_finish_installation.sh
+echo "install grub"
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
+
+#echo "add nvidia-drm.modeset=1 and uncomment GRUB_DISABLE_OS_PROBER
+echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub
+
+echo "set kernel parameter"
+sed -i 's/quiet/quiet loglevel=3 mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
+
+echo "generate grub"
+grub-mkconfig -o /boot/grub/grub.cfg
 #+END_SRC
 
 ** Create users and passwords
