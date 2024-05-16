@@ -409,5 +409,31 @@ kwriteconfig6 --file /home/$USER/.config/kwinrc --group TabBox --key LayoutName 
 # dolphin
 kwriteconfig6 --file ~/.config/dolphinrc --group General --key ShowFullPath true
 
+echo "Install finished. Restart and run 100_afterinstall.sh
+#+END_SRC
 
+* Afterinstall
+#+BEGIN_SRC bash :tangle 100_afterinstall.sh
+echo "renew clamav database"
+sudo freshclam
+
+echo "add flatpak-repo"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo "run rkhunter"
+sudo rkhunter --update
+sudo rkhunter --propupd
+#c for check q for skip keypress
+sudo rkhunter -c -sk
+
+# configure snapper
+sudo umount /.snapshots
+sudo rm -r /.snapshots
+sudo snapper -c root create-config /
+#read UUID of rootpartition and write into variable
+# in bash or konsole
+set rootUUID=$(findmnt --output=UUID --noheadings --target=/root)
+# in fish
+set rootUUID $(findmnt --output=UUID --noheadings --target=/root)
+sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
 #+END_SRC
