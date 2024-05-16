@@ -1,8 +1,8 @@
 echo "set locales and time"
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-timedatectl set-timezone Europe/Berlin
-timedatectl set-ntp true
+#timedatectl set-timezone Europe/Berlin
+#timedatectl set-ntp true
 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -31,23 +31,28 @@ echo "predefine host-file for localhost"
 echo "127.0.0.1 localhost" | tee -a /etc/hosts
 echo "127.0.0.1 XMGneo15Arch" | tee -a /etc/hosts
 
-echo "trigger dracut for kernels"
-for kernel in /usr/lib/modules/*
-do
-v_kernel=$(basename "$kernel")
-echo $v_kernel
-dracut /boot/initramfs-linux.img --force --kver $v_kernel
-dracut /boot/initramfs-linux-zen.img --force --kver $v_kernel
-done
+echo "clone nomispaz ArchInstall git-repository"
+git clone https://github.com/nomispaz/ArchInstall
+cd ArchInstall
+
+echo "setup dracut hooks"
+cp -r etc/* /etc/
+cp -r usr/* /usr/
+chmod +x /usr/local/bin/dracut-install.sh
+chmod +x /usr/local/bin/dracut-remove.sh
+
+cd /
+
+pacman -Syu --noconfirm --needed linux
 
 echo "install grub"
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
 
 #echo "add nvidia-drm.modeset=1 and uncomment GRUB_DISABLE_OS_PROBER
-echo 'GRUB_DISABLE_OS_PROBER="false"' >> /etc/default/grub
+echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub
 
 echo "set kernel parameter"
-sed -i 's/quiet/quiet mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
+sed -i 's/quiet/quiet loglevel=3 mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
 
 echo "generate grub"
 grub-mkconfig -o /boot/grub/grub.cfg

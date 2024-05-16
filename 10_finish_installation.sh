@@ -2,8 +2,6 @@ echo "enable services"
 systemctl enable NetworkManager.service
 systemctl enable bluetooth.service
 systemctl enable cups.service
-#hardening --> don't enable sshd
-#systemctl enable sshd.service
 systemctl enable avahi-daemon.service
 systemctl enable libvirtd.service
 systemctl enable firewalld.service
@@ -29,3 +27,5 @@ passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
+git clone https://github.com/nomispaz/dotfiles /home/$user/dotfiles

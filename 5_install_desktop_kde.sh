@@ -3,5 +3,6 @@ plasma-meta \
 dolphin \
 plasma-workspace \
 egl-wayland \
-kate \
-konsole
+kwrite \
+konsole \
+ark

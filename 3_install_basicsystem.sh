@@ -35,6 +35,7 @@ xdg-user-dirs \
 wget \
 blueman \
 alacritty \
+fish \
 snapper \
 firefox 
 
