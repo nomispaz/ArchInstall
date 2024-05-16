@@ -437,4 +437,7 @@ set rootUUID=$(findmnt --output=UUID --noheadings --target=/root)
 # in fish
 set rootUUID $(findmnt --output=UUID --noheadings --target=/root)
 sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
+
+# set firewall zone
+sudo firewall-cmd --set-default-zone block
 #+END_SRC
