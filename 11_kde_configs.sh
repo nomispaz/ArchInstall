@@ -9,6 +9,10 @@ kwriteconfig6 --file /home/$USER/.config/gtk-3.0/settings --group Settings --key
 kwriteconfig6 --file /home/$USER/.config/gtk-4.0/settings --group Settings --key gtk-application-prefer-dark-theme true
 kwriteconfig6 --file /home/$USER/.config/gtk-4.0/settings --group Settings --key gtk-icon-theme-name breeze-dark
 
+# disable browserintegration and device-automount
+kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-browserintegrationreminder --key autoload false
+kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-device_automounter --key autoload false
+
 
 
 

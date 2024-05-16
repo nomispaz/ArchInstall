@@ -351,6 +351,15 @@ echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 ** Install personal dotfiles
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
 git clone https://github.com/nomispaz/dotfiles /home/$user/dotfiles
+cd /home/$user/dotfiles
+# loop through all folders and files
+for program in $(ls -d  *)
+do
+  # create softlink to config folder for all folders and files unless it is the README
+  if [ ! $program == 'README.md' ]; then
+    ln -s ~/dotfiles/$program ~/.config/$program
+  fi
+done
 #+END_SRC
 
 * KDE configs
@@ -369,6 +378,10 @@ kwriteconfig6 --file /home/$USER/.config/gtk-3.0/settings --group Settings --key
 kwriteconfig6 --file /home/$USER/.config/gtk-3.0/settings --group Settings --key gtk-icon-theme-name breeze-dark
 kwriteconfig6 --file /home/$USER/.config/gtk-4.0/settings --group Settings --key gtk-application-prefer-dark-theme true
 kwriteconfig6 --file /home/$USER/.config/gtk-4.0/settings --group Settings --key gtk-icon-theme-name breeze-dark
+
+# disable browserintegration and device-automount
+kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-browserintegrationreminder --key autoload false
+kwriteconfig6 --file /home/$USER/.config/kded5rc --group Module-device_automounter --key autoload false
 
 
 
