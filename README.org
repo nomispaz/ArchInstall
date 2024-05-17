@@ -139,6 +139,7 @@ blueman \
 alacritty \
 fish \
 snapper \
+snap-pac \
 firefox 
 #+END_SRC
 
@@ -265,7 +266,8 @@ vlc \
 flatpak \
 testdisk \
 screenfetch \
-meld
+meld \
+libreoffice
 #+END_SRC
 ** Install gaming tools
 #+BEGIN_SRC bash :tangle 8_gaming.sh
