@@ -289,7 +289,7 @@ mangohud
 #+BEGIN_SRC bash :tangle 9_qemu_libvirt.sh
 pacman -Syu --noconfirm --needed \
 virt-manager \
-qemu \
+qemu-full \
 edk2-ovmf \
 bridge-utils \
 dnsmasq
