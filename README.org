@@ -359,7 +359,7 @@ echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
 
 # sddm set theme to breeze
-kwriteconfig6 --file /etc/sddm.conf --group Theme --key Current breeze
+sudo kwriteconfig6 --file /etc/sddm.conf --group Theme --key Current breeze
 
 # change user from root to normal user
 su $user
@@ -386,7 +386,7 @@ done
   - [ ] powerdevilrc
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
 # activate numlock during startup
-kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key Numlock 0
+kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key NumLock 0
 kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key X11LibInputXAccelProfileFlat true
 
 # activate breeze-dark
