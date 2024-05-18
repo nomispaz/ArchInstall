@@ -37,6 +37,7 @@ blueman \
 alacritty \
 fish \
 snapper \
+snap-pac \
 firefox 
 
 pacstrap /mnt \
@@ -51,6 +52,7 @@ wireplumber
 pacstrap /mnt \
 apparmor \
 clamav \
+firewalld \
 rkhunter
 
 genfstab -U /mnt > /mnt/etc/fstab

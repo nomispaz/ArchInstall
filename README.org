@@ -359,7 +359,7 @@ echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
 #+BEGIN_SRC bash :tangle 10_finish_installation.sh
 
 # sddm set theme to breeze
-sudo kwriteconfig6 --file /etc/sddm.conf --group Theme --key Current breeze
+kwriteconfig6 --file /etc/sddm.conf --group Theme --key Current breeze
 
 # change user from root to normal user
 su $user

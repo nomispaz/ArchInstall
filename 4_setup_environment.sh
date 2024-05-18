@@ -42,17 +42,3 @@ chmod +x /usr/local/bin/dracut-install.sh
 chmod +x /usr/local/bin/dracut-remove.sh
 
 cd /
-
-pacman -Syu --noconfirm --needed linux
-
-echo "install grub"
-grub-install --target=x86_64-efi --efi-directory=/boot/efi
-
-#echo "add nvidia-drm.modeset=1 and uncomment GRUB_DISABLE_OS_PROBER
-echo 'GRUB_DISABLE_OS_PROBER=false' >> /etc/default/grub
-
-echo "set kernel parameter"
-sed -i 's/quiet/quiet loglevel=3 mitigations=auto security=apparmor amd_pstate=passive nvidia_drm.modeset=1/g' /etc/default/grub
-
-echo "generate grub"
-grub-mkconfig -o /boot/grub/grub.cfg

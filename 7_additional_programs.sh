@@ -8,4 +8,7 @@ thunderbird \
 veracrypt \
 vlc \
 flatpak \
-testdisk
+testdisk \
+screenfetch \
+meld \
+libreoffice
