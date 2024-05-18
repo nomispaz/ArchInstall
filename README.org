@@ -434,10 +434,27 @@ sudo umount /.snapshots
 sudo rm -r /.snapshots
 sudo snapper -c root create-config /
 #read UUID of rootpartition and write into variable
+
+set FSTAB_FILE "/etc/fstab"
+
+# Grep for the Btrfs root subvolume line and extract the UUID, ensuring it contains 'subvol=root' or 'subvol=/root'
+#    grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE: Ensures the line contains / (root), btrfs filesystem type, and subvol=root or subvol=/root indicating the root subvolume.
+#    awk '{print $1}': Extracts the first field, which may include the UUID= prefix.
+#    sed 's/^UUID=//': Strips the UUID= prefix if it exists.
+
+# Check if running in fish
+if [ -n "$fish_version" ]; then
+  echo "Running in Fish shell"
+  set UUID (grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE | awk '{print $1}' | sed 's/^UUID=//')
+else
+  echo "Nont running in Fish shell"
+  UUID=$(grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' /etc/fstab | awk '{print $1}' | sed 's/^UUID=//')
+fi
+
 # in bash or konsole
 set rootUUID=$(findmnt --output=UUID --noheadings --target=/root)
 # in fish
-set rootUUID $(findmnt --output=UUID --noheadings --target=/root)
+
 sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
 
 # set firewall zone
