@@ -445,10 +445,10 @@ set FSTAB_FILE "/etc/fstab"
 # Check if running in fish
 if [ -n "$fish_version" ]; then
   echo "Running in Fish shell"
-  set UUID (grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE | awk '{print $1}' | sed 's/^UUID=//')
+  set rootUUID (grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE | awk '{print $1}' | sed 's/^UUID=//')
 else
-  echo "Nont running in Fish shell"
-  UUID=$(grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' /etc/fstab | awk '{print $1}' | sed 's/^UUID=//')
+  echo "Not running in Fish shell"
+  rootUUID=$(grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' /etc/fstab | awk '{print $1}' | sed 's/^UUID=//')
 fi
 
 # in bash or konsole
