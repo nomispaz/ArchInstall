@@ -429,33 +429,38 @@ sudo rkhunter --propupd
 #c for check q for skip keypress
 sudo rkhunter -c -sk
 
-# configure snapper
-sudo umount /.snapshots
-sudo rm -r /.snapshots
-sudo snapper -c root create-config /
-#read UUID of rootpartition and write into variable
+# Function to configure snapper
+function configure_snapper
+    sudo umount /.snapshots
+    sudo rm -r /.snapshots
+    sudo snapper -c root create-config /
 
-set FSTAB_FILE "/etc/fstab"
+    # Define the path to fstab
+    set FSTAB_FILE "/etc/fstab"
 
-# Grep for the Btrfs root subvolume line and extract the UUID, ensuring it contains 'subvol=root' or 'subvol=/root'
-#    grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE: Ensures the line contains / (root), btrfs filesystem type, and subvol=root or subvol=/root indicating the root subvolume.
-#    awk '{print $1}': Extracts the first field, which may include the UUID= prefix.
-#    sed 's/^UUID=//': Strips the UUID= prefix if it exists.
+    # Check if running in Fish shell
+    if test -n "$fish_version"
+        echo "Running in Fish shell"
+        # Grep for the Btrfs root subvolume line and extract the UUID, ensuring it contains 'subvol=root' or 'subvol=/root'
+        set rootUUID (grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE | awk '{print $1}' | sed 's/^UUID=//')
+    else
+        echo "Not running in Fish shell"
+        # Use Bash syntax for setting rootUUID
+        rootUUID=$(grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' /etc/fstab | awk '{print $1}' | sed 's/^UUID=//')
+    end
 
-# Check if running in fish
-if [ -n "$fish_version" ]; then
-  echo "Running in Fish shell"
-  set rootUUID (grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' $FSTAB_FILE | awk '{print $1}' | sed 's/^UUID=//')
-else
-  echo "Not running in Fish shell"
-  rootUUID=$(grep -E '^[^#].*\s/\s.*btrfs.*subvol=(/)?root' /etc/fstab | awk '{print $1}' | sed 's/^UUID=//')
-fi
+    # Ensure the UUID is fetched correctly
+    if test -z "$rootUUID"
+        echo "Failed to find the UUID of the Btrfs root subvolume"
+        return 1
+    end
 
-# in bash or konsole
-set rootUUID=$(findmnt --output=UUID --noheadings --target=/root)
-# in fish
+    # Mount the snapshots subvolume
+    sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
+end
 
-sudo mount -o subvol=snapshots UUID=$rootUUID /.snapshots
+# Run the function to configure snapper
+configure_snapper
 
 # set firewall zone
 sudo firewall-cmd --set-default-zone block
