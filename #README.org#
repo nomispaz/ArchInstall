@@ -258,8 +258,7 @@ dunst \
 rofi \
 python-dbus-next \
 network-manager-applet \
-ttf-font-awesome \
-wl-clipboard
+ttf-font-awesome
 #+END_SRC
 ** nvidia-drivers (nvidia-open)
 #+BEGIN_SRC bash :tangle 6_install_nvidia.sh
@@ -500,9 +499,6 @@ configure_snapper
 sudo firewall-cmd --set-default-zone block
 
 # activate emacs daemon
-systemctl --user enable --now emacs
-systemctl --user start --now emacs
+systemctl --user stop --now emacs
 #+END_SRC
-
-
 
