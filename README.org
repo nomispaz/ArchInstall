@@ -104,30 +104,27 @@ pacman-contrib \
 sudo \
 grub \
 dracut \
-os-prober
+os-prober \
 #+END_SRC
 
 ** Some basic drivers
 #+BEGIN_SRC bash :padline no :tangle 3_install_basicsystem.sh
-pacstrap /mnt \
 xf86-input-synaptics \
-amd-ucode
+amd-ucode \
 #+END_SRC
 
 ** Networking stuff
 #+BEGIN_SRC bash :padline no :tangle 3_install_basicsystem.sh
-pacstrap /mnt \
 openssh \
 iwd \
 networkmanager \
 wireless_tools \
 wpa_supplicant \
-smartmontools
+smartmontools \
 #+END_SRC
 
 ** Basic desktop programs
 #+BEGIN_SRC bash :padline no :tangle 3_install_basicsystem.sh
-pacstrap /mnt \
 neovim \
 emacs \
 htop \
@@ -141,12 +138,11 @@ alacritty \
 fish \
 snapper \
 snap-pac \
-firefox 
+firefox \
 #+END_SRC
 
 ** Pipewire
 #+BEGIN_SRC bash :padline no :tangle 3_install_basicsystem.sh
-pacstrap /mnt \
 pipewire \
 pipewire-alsa \
 pipewire-jack \
@@ -158,7 +154,6 @@ wireplumber
 
 ** Security
 #+BEGIN_SRC bash :padline no :tangle 3_install_basicsystem.sh
-pacstrap /mnt \
 apparmor \
 clamav \
 firewalld \
@@ -178,8 +173,6 @@ echo "Next steps: Enter chroot. After that, run chmod +x <script>.sh to continue
 echo "set locales and time"
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-#timedatectl set-timezone Europe/Berlin
-#timedatectl set-ntp true
 #+END_SRC
 ** Language
 #+BEGIN_SRC bash :tangle 4_setup_environment.sh
@@ -285,7 +278,10 @@ flatpak \
 testdisk \
 screenfetch \
 meld \
-libreoffice
+libreoffice \
+ranger \
+okular \
+cpupower
 #+END_SRC
 ** Install gaming tools
 #+BEGIN_SRC bash :tangle 8_gaming.sh
@@ -384,11 +380,12 @@ passwd $user
 
 echo "Defaults targetpw # Ask for the password of the target user" >> /etc/sudoers
 echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+
+echo "Install finished. Restart and run 100_afterinstall.sh. Then restart again.
 #+END_SRC
 
 ** Install personal dotfiles
-#+BEGIN_SRC bash :tangle 10_finish_installation.sh
-
+#+BEGIN_SRC bash :tangle 100_finish_installation.sh
 # sddm set theme to breeze
 sudo kwriteconfig6 --file /etc/sddm.conf --group Theme --key Current breeze
 
@@ -415,7 +412,7 @@ done
   - [ ] plasma-org.kde.plasma.desktop-appletsrc
   - [ ] plasmashellrc
   - [ ] powerdevilrc
-#+BEGIN_SRC bash :tangle 10_finish_installation.sh
+#+BEGIN_SRC bash :tangle 100_finish_installation.sh
 # activate numlock during startup
 kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key NumLock 0
 kwriteconfig6 --file /home/$USER/.config/kcminputrc --group Keyboard --key X11LibInputXAccelProfileFlat true
@@ -446,7 +443,6 @@ kwriteconfig6 --file /home/$USER/.config/kwinrc --group TabBox --key LayoutName 
 # dolphin
 kwriteconfig6 --file ~/.config/dolphinrc --group General --key ShowFullPath true
 
-echo "Install finished. Restart and run 100_afterinstall.sh
 #+END_SRC
 
 * Afterinstall
@@ -504,5 +500,31 @@ systemctl --user enable --now emacs
 systemctl --user start --now emacs
 #+END_SRC
 
+* Wrapper
+Wrapper for several scripts for faster install
+#+begin_src bash :tangle 00_wrapper_kde_qtile_nvidia.sh
 
+chmod +x 2_prepare_drives.sh
+./2_prepare_drives.sh
+chmod +x 3_install_basicsystem.sh
+./3_install_basicsystem.sh
+chmod +x 4_setup_environment.sh
+./4_setup_environment.sh
+chmod +x 5_install_desktop_kde.sh
+./5_install_desktop_kde.sh
+chmod +x 5_install_windowmanager_qtile.sh
+./5_install_windowmanager_qtile.sh
+chmod +x 6_install_nvidia.sh
+./6_install_nvidia.sh
+chmod +x 7_additional_programs.sh
+./7_additional_programs.sh
+chmod +x 8_gaming.sh
+./8_gaming.sh
+chmod +x 9_qemu_libvirt.sh
+./9_qemu_libvirt.sh
+chmod +x 10_IDE.sh
+./10_IDE.sh
+chmod +x 10_finish_installation.sh
+./10_finish_installation.sh
+#+end_src
 

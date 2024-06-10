@@ -11,4 +11,7 @@ flatpak \
 testdisk \
 screenfetch \
 meld \
-libreoffice
+libreoffice \
+ranger \
+okular \
+cpupower

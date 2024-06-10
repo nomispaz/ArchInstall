@@ -45,3 +45,7 @@ configure_snapper
 
 # set firewall zone
 sudo firewall-cmd --set-default-zone block
+
+# activate emacs daemon
+systemctl --user enable --now emacs
+systemctl --user start --now emacs

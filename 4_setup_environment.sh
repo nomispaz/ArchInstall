@@ -1,10 +1,11 @@
 echo "set locales and time"
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-#timedatectl set-timezone Europe/Berlin
-#timedatectl set-ntp true
 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "LC_MONETARY=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_NUMERIC=de_DE.UTF-8" >> /etc/locale.conf
+echo "LC_TIME=de_DE.UTF-8" >> /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
