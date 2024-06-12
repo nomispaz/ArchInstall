@@ -222,6 +222,9 @@ cp -r usr/* /usr/
 chmod +x /usr/local/bin/dracut-install.sh
 chmod +x /usr/local/bin/dracut-remove.sh
 
+echo "make sway startscript executable"
+chmod +x /usr/local/bin/sway-nvidia.sh
+
 cd /
 #+END_SRC
 
@@ -239,7 +242,8 @@ plasma-workspace \
 egl-wayland \
 kwrite \
 konsole \
-ark
+ark \
+gwenview
 #+END_SRC
 ** window manager qtile
 #+BEGIN_SRC bash :tangle 5_install_windowmanager_qtile.sh
@@ -254,6 +258,22 @@ network-manager-applet \
 ttf-font-awesome \
 wl-clipboard
 #+END_SRC
+** window manager sway
+#+begin_src bash :tangle 5_install_windowmanager_sway.sh
+pacman -Syu --noconfirm \
+sway \
+python-i3ipc \
+waybar \
+swaybg \
+gammastep
+#+end_src
+
+Directly change desktop file so that custom start skript is run
+#+begin_src bash :tangle 5_install_windowmanager_sway.sh
+echo "Update sway.desktop file"
+sed -i 's/Exec=sway/Exec=/usr/local/bin/sway-nvidia.sh/g' /usr/share/wayland-sessions/sway.desktop
+#+end_src
+
 ** nvidia-drivers (nvidia-open)
 #+BEGIN_SRC bash :tangle 6_install_nvidia.sh
 pacman -Syu --noconfirm --needed \
@@ -502,7 +522,7 @@ systemctl --user start --now emacs
 
 * Wrapper
 Wrapper for several scripts for faster install
-#+begin_src bash :tangle 00_wrapper_kde_qtile_nvidia.sh
+#+begin_src bash :tangle 00_wrapper_kde_qtile_sway_nvidia.sh
 
 chmod +x 2_prepare_drives.sh
 ./2_prepare_drives.sh
@@ -514,6 +534,8 @@ chmod +x 5_install_desktop_kde.sh
 ./5_install_desktop_kde.sh
 chmod +x 5_install_windowmanager_qtile.sh
 ./5_install_windowmanager_qtile.sh
+chmod +x 5_install_windowmanager_sway.sh
+./5_install_windowmanager_sway.sh
 chmod +x 6_install_nvidia.sh
 ./6_install_nvidia.sh
 chmod +x 7_additional_programs.sh

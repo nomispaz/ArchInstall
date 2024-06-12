@@ -8,6 +8,8 @@ chmod +x 5_install_desktop_kde.sh
 ./5_install_desktop_kde.sh
 chmod +x 5_install_windowmanager_qtile.sh
 ./5_install_windowmanager_qtile.sh
+chmod +x 5_install_windowmanager_sway.sh
+./5_install_windowmanager_sway.sh
 chmod +x 6_install_nvidia.sh
 ./6_install_nvidia.sh
 chmod +x 7_additional_programs.sh

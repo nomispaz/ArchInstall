@@ -5,4 +5,5 @@ plasma-workspace \
 egl-wayland \
 kwrite \
 konsole \
-ark
+ark \
+gwenview
