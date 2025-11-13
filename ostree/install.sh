@@ -7,7 +7,7 @@ mkfs.fat -F32 /dev/vda1
 mkfs.ext4 /dev/vda2
 
 mount /dev/vda2 /mnt
-mkdir /mnt/boot/efi
+mkdir -p /mnt/boot/efi
 mount /dev/vda1 /mnt/boot/efi
 
 pacstrap /mnt base base-devel git ostree arch-install-scripts
