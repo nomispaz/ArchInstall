@@ -7,7 +7,7 @@ mkdir /tmp/buildroot
 pacstrap -c -G -M /tmp/buildroot base linux linux-firmware systemd ostree
 
 rm -rf /tmp/buildroot/{dev,proc,sys,run,tmp,var/tmp,mnt,media,lost+found}
-cp -r /tmp/buildroot/etc /tmp/buildroot/usr/
+mv /tmp/buildroot/etc /tmp/buildroot/usr/etc
 
 ostree --repo=/ostree/repo commit \
   --branch=archlinux/stable \
