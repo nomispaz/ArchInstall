@@ -7,6 +7,7 @@ mkdir /tmp/buildroot
 pacstrap -c -G -M /tmp/buildroot base linux linux-firmware systemd ostree
 
 rm -rf /tmp/buildroot/{dev,proc,sys,run,tmp,var/tmp,mnt,media,lost+found}
+cp -r /tmp/buildroot/etc /tmp/buildroot/usr/
 
 ostree --repo=/ostree/repo commit \
   --branch=archlinux/stable \
@@ -14,8 +15,10 @@ ostree --repo=/ostree/repo commit \
   --body="Base install with pacstrap" \
   /tmp/buildroot
 
-mv /tmp/buildroot/etc /tmp/buildroot/usr/etc
+mkdir -p /ostree/deploy
 
 ostree admin init-fs /ostree/deploy
 ostree admin os-init archlinux
 ostree admin deploy --os=archlinux archlinux/stable
+
+bootctl update
